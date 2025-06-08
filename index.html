@@ -37,7 +37,7 @@
             align-items: center;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 20px;
         }
 
         .nav-left {
@@ -53,7 +53,7 @@
         }
 
         .hamburger {
-            display: flex;
+            display: none;
             flex-direction: column;
             gap: 4px;
             cursor: pointer;
@@ -68,110 +68,75 @@
             transition: all 0.3s ease;
         }
 
-        /* Hamburger Dropdown */
-        .hamburger-dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(0, 0, 0, 0.98);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            min-width: 280px;
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
             opacity: 0;
-            visibility: hidden;
-            transform: translateY(-20px) scale(0.95);
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            z-index: 1001;
-            margin-top: 15px;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
         }
 
-        .hamburger.active .hamburger-dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
         }
 
-        .hamburger-dropdown::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: 20px;
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-bottom: 8px solid rgba(0, 0, 0, 0.98);
-        }
-
-        .hamburger-dropdown a {
-            display: block;
-            padding: 18px 25px;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 0.85rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .hamburger-dropdown a:last-child {
-            border-bottom: none;
-        }
-
-        .hamburger-dropdown a::before {
-            content: '';
-            position: absolute;
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
             top: 0;
             left: -100%;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s ease;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1001;
+            transition: left 0.4s ease;
+            overflow-y: auto;
+            padding-top: 80px;
         }
 
-        .hamburger-dropdown a:hover::before {
-            left: 100%;
+        .mobile-menu.active {
+            left: 0;
         }
 
-        .hamburger-dropdown a:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: #f0f0f0;
-            padding-left: 30px;
+        .mobile-menu-content {
+            padding: 20px;
         }
 
-        .hamburger-dropdown .models-submenu {
-            background: rgba(255, 255, 255, 0.05);
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
+        .mobile-menu a {
+            display: block;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
         }
 
-        .hamburger-dropdown .models-submenu.active {
-            max-height: 400px;
+        .mobile-menu a:hover {
+            color: #cccccc;
+            padding-left: 20px;
         }
 
-        .hamburger-dropdown .models-submenu a {
-            padding-left: 45px;
-            font-size: 0.8rem;
-            opacity: 0.9;
+        .models-section-mobile {
+            margin-top: 20px;
         }
 
-        .hamburger-dropdown .models-toggle::after {
-            content: '▼';
-            font-size: 0.7rem;
-            margin-left: 8px;
-            transition: transform 0.3s ease;
-            display: inline-block;
+        .models-section-mobile h3 {
+            color: #ffffff;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
         }
 
-        .hamburger-dropdown .models-toggle.active::after {
-            transform: rotate(180deg);
+        .models-section-mobile a {
+            font-size: 0.95rem;
+            padding: 15px 0 15px 20px;
+            border-left: 2px solid rgba(255, 255, 255, 0.2);
         }
 
         .logo {
@@ -218,112 +183,6 @@
         }
 
         .nav-links a:hover {
-            color: #cccccc;
-        }
-
-        /* Models Dropdown */
-        .models-dropdown {
-            position: relative;
-        }
-
-        .models-dropdown > a {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .models-dropdown > a::after {
-            content: '▼';
-            font-size: 0.7rem;
-            margin-left: 8px;
-            transition: transform 0.3s ease;
-            display: inline-block;
-        }
-
-        .models-dropdown.active > a::after,
-        .models-dropdown:hover > a::after {
-            transform: rotate(180deg);
-        }
-
-        .dropdown-content {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(0, 0, 0, 0.98);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            min-width: 280px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-20px) scale(0.95);
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            z-index: 1001;
-            margin-top: 15px;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-        }
-
-        .models-dropdown.active .dropdown-content,
-        .models-dropdown:hover .dropdown-content {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-        }
-
-        .dropdown-content::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: 20px;
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-bottom: 8px solid rgba(0, 0, 0, 0.98);
-        }
-
-        .dropdown-content a {
-            display: block;
-            padding: 18px 25px;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 0.85rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-content a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .dropdown-content a:hover::before {
-            left: 100%;
-        }
-
-        .dropdown-content a:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: #f0f0f0;
-            padding-left: 30px;
-        }
-
-        .dropdown-content a .model-power {
-            font-size: 0.7rem;
-            opacity: 0.7;
-            display: block;
-            margin-top: 2px;
             color: #cccccc;
         }
 
@@ -627,7 +486,7 @@
             font-weight: 300;
         }
 
-        /* Responsive Design */
+        /* Mobile Responsive Design */
         @media (max-width: 768px) {
             .nav-content {
                 padding: 0 20px;
@@ -637,25 +496,105 @@
                 display: none;
             }
 
+            .hamburger {
+                display: flex;
+            }
+
+            .logo::before,
+            .logo::after {
+                display: none;
+            }
+
             .hero-content {
                 padding: 40px 20px;
             }
 
             .hero-title {
                 font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                max-width: none;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 280px;
+                padding: 15px 30px;
+                font-size: 0.9rem;
             }
 
             .models-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .model-card {
+                height: 400px;
+            }
+
+            .model-overlay {
+                opacity: 1;
+                background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 50%);
+                padding: 25px;
+            }
+
+            .model-name {
+                font-size: 1.4rem;
+                letter-spacing: 1px;
+            }
+
+            .model-description {
+                font-size: 0.85rem;
+            }
+
+            .model-specs {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .spec-item {
+                font-size: 0.75rem;
+            }
+
+            .spec-value {
+                font-size: 1rem;
             }
 
             .models-section {
                 padding: 60px 20px;
             }
 
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+
             .modal-content {
                 margin: 50px 20px;
                 padding: 20px;
+            }
+
+            .modal-close {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                backdrop-filter: blur(10px);
+            }
+
+            .modal-image {
+                height: 250px;
             }
 
             .modal-info {
@@ -664,8 +603,104 @@
             }
 
             .modal-title {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+
+            .modal-description {
+                font-size: 0.95rem;
+            }
+
+            .specs-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .spec-box {
+                padding: 15px;
+            }
+
+            .spec-value-large {
+                font-size: 1.1rem;
+            }
+
+            .carousel-dots {
+                bottom: 120px;
+            }
+
+            .dot {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            .hero-title {
                 font-size: 2rem;
             }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .models-grid {
+                gap: 15px;
+            }
+
+            .model-card {
+                height: 350px;
+            }
+
+            .model-overlay {
+                padding: 20px;
+            }
+
+            .model-name {
+                font-size: 1.2rem;
+            }
+
+            .model-description {
+                font-size: 0.8rem;
+                margin-bottom: 15px;
+            }
+
+            .model-specs {
+                gap: 12px;
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+
+        /* Touch optimizations */
+        .hamburger,
+        .cta-button,
+        .learn-more-btn,
+        .dot,
+        .modal-close,
+        .model-card {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Performance optimizations */
+        .hero-slide {
+            will-change: opacity;
+        }
+
+        .model-overlay {
+            will-change: opacity;
+        }
+
+        .mobile-menu {
+            will-change: transform;
         }
     </style>
 </head>
@@ -674,30 +709,10 @@
     <nav class="navbar">
         <div class="nav-content">
             <div class="nav-left">
-                <div class="hamburger" onclick="toggleHamburgerMenu(event)">
+                <div class="hamburger" onclick="toggleMobileMenu()">
                     <span></span>
                     <span></span>
                     <span></span>
-                    <div class="hamburger-dropdown">
-                        <a href="#" class="models-toggle" onclick="toggleModelsSubmenu(event)">Models</a>
-                        <div class="models-submenu">
-                            <a href="#" onclick="openModal('porsche911')">Porsche 911 (992) Soft Kit</a>
-                            <a href="#" onclick="openModal('p9lm')">MANSORY P9LM EVO 900</a>
-                            <a href="#" onclick="openModal('porsche918')">Porsche 918 Spyder</a>
-                            <a href="#" onclick="openModal('sf90')">Ferrari SF90 Spider</a>
-                            <a href="#" onclick="openModal('urus')">Venatus Urus</a>
-                            <a href="#" onclick="openModal('stallone')">Stallone 812</a>
-                            <a href="#" onclick="openModal('gronos63')">GRONOS MY2025</a>
-                            <a href="#" onclick="openModal('bentleygtc2025')">Bentley GTC MY2025</a>
-                            <a href="#" onclick="openModal('rollsroyce')">Rolls-Royce Cullinan MY2025</a>
-                        </div>
-                        <a href="#services">Cars for Sale</a>
-                        <a href="#rims">Rims</a>
-                        <a href="#boutique">Boutique</a>
-                        <a href="#news">News</a>
-                        <a href="#dealer">Find a Dealer</a>
-                        <a href="#contact">Contact Us</a>
-                    </div>
                 </div>
                 <ul class="nav-links">
                     <li><a href="#services">Cars for Sale</a></li>
@@ -717,6 +732,31 @@
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <a href="#services">Cars for Sale</a>
+            <a href="#rims">Rims</a>
+            <a href="#boutique">Boutique</a>
+            <a href="#news">News</a>
+            <a href="#dealer">Find a Dealer</a>
+            <a href="#contact">Contact Us</a>
+            
+            <div class="models-section-mobile">
+                <h3>Our Models</h3>
+                <a href="#" onclick="openModal('porsche911')">Porsche 911 (992) Soft Kit</a>
+                <a href="#" onclick="openModal('p9lm')">MANSORY P9LM EVO 900</a>
+                <a href="#" onclick="openModal('porsche918')">Porsche 918 Spyder</a>
+                <a href="#" onclick="openModal('sf90')">Ferrari SF90 Spider</a>
+                <a href="#" onclick="openModal('urus')">Venatus Urus</a>
+                <a href="#" onclick="openModal('stallone')">Stallone 812</a>
+                <a href="#" onclick="openModal('gronos63')">GRONOS MY2025</a>
+                <a href="#" onclick="openModal('bentleygtc2025')">Bentley GTC MY2025</a>
+                <a href="#" onclick="openModal('rollsroyce')">Rolls-Royce Cullinan MY2025</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -745,7 +785,7 @@
             <div class="model-card" style="background-image: url('https://www.mansory.com/cdn-cgi/image/format=avif,quality=90/https://cdn.prod.website-files.com/661d6e0d2e84ef511db18f17/6818bf619ce72a9019e6ec04_GRONOS%2520%2520MY%25202025-Hero_image-001.webp');" onclick="openModal('gronos63')">
                 <div class="model-overlay">
                     <h3 class="model-name">GRONOS MY2025</h3>
-                    <p class="model-description"> Mercedes G-class G63 conversion with 850 HP</p>
+                    <p class="model-description">Mercedes G-class G63 conversion with 850 HP</p>
                     <div class="model-specs">
                         <div class="spec-item">
                             <span class="spec-value">850</span>
@@ -796,17 +836,84 @@
                             HP
                         </div>
                         <div class="spec-item">
-                            <span class="spec-value">2.7s</span>
+                            <span class="spec-value">3.2s</span>
                             0-60 MPH
                         </div>
                         <div class="spec-item">
-                            <span class="spec-value">220</span>
+                            <span class="spec-value">190</span>
                             TOP SPEED
                         </div>
                     </div>
                     <button class="learn-more-btn">Learn More</button>
                 </div>
             </div>
+
+            <div class="model-card" style="background-image: url('https://www.mansory.com/cdn-cgi/image/format=avif,quality=90/https://cdn.prod.website-files.com/661d6e0d2e84ef511db18f17/6818c4ee38f2d34870dab4aa_Stallone%2520Tempesta%2520Nera-Hero_image-001.webp');" onclick="openModal('stallone')">
+                <div class="model-overlay">
+                    <h3 class="model-name">Stallone 812</h3>
+                    <p class="model-description">Ferrari 812 Superfast with 830 hp and exclusive carbon fiber bodywork</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <span class="spec-value">830</span>
+                            HP
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-value">2.9s</span>
+                            0-60 MPH
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-value">208</span>
+                            TOP SPEED
+                        </div>
+                    </div>
+                    <button class="learn-more-btn">Learn More</button>
+                </div>
+            </div>
+            
+            <div class="model-card" style="background-image: url('https://www.mansory.com/cdn-cgi/image/format=avif,quality=90/https://cdn.prod.website-files.com/661d6e0d2e84ef511db18f17/681b22e2bc6a3710aa5130e0_bentley-gtc-mansory-grey-hero.webp');" onclick="openModal('bentleygtc2025')">
+                <div class="model-overlay">
+                    <h3 class="model-name">Bentley GTC MY2025</h3>
+                    <p class="model-description">Based on Bentley Continental GT / GTC - Developed body kit made of carbon fibre - Mansory Atelier interior</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <span class="spec-value">750</span>
+                            HP
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-value">3.3s</span>
+                            0-60 MPH
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-value">205</span>
+                            TOP SPEED
+                        </div>
+                    </div>
+                    <button class="learn-more-btn">Learn More</button>
+                </div>
+            </div>
+
+            <div class="model-card" style="background-image: url('https://www.mansory.com/cdn-cgi/image/format=avif,quality=90/https://cdn.prod.website-files.com/661d6e0d2e84ef511db18f17/6818c4229400676a9bb2571d_Rolls-Royce%2520Cullinan%2520MY2025-Hero_image-001.webp');" onclick="openModal('rollsroyce')">
+                <div class="model-overlay">
+                    <h3 class="model-name">Rolls-Royce Cullinan MY2025</h3>
+                    <p class="model-description">Complete vehicle conversion based on the Rolls-Royce Cullinan MY 2025 to continue the successful product strategy of MANSORY in the field of high-end automotive refinement.</p>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <span class="spec-value">650</span>
+                            HP
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-value">4.5s</span>
+                            0-60 MPH
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-value">174</span>
+                            TOP SPEED
+                        </div>
+                    </div>
+                    <button class="learn-more-btn">Learn More</button>
+                </div>
+            </div>
+            
 
             <div class="model-card" style="background-image: url('https://www.mansory.com/cdn-cgi/image/format=avif,quality=90/https://cdn.prod.website-files.com/661d6e0d2e84ef511db18f17/6818c3081fcdc176763b0595_Porsche%2520918-Hero_image-001.webp');" onclick="openModal('porsche918')">
                 <div class="model-overlay">
@@ -873,73 +980,7 @@
                     <button class="learn-more-btn">Learn More</button>
                 </div>
             </div>
-
-            <div class="model-card" style="background-image: url('https://www.mansory.com/cdn-cgi/image/format=avif,quality=90/https://cdn.prod.website-files.com/661d6e0d2e84ef511db18f17/6818c4ee38f2d34870dab4aa_Stallone%2520Tempesta%2520Nera-Hero_image-001.webp');" onclick="openModal('stallone')">
-                <div class="model-overlay">
-                    <h3 class="model-name">Stallone 812</h3>
-                    <p class="model-description">Ferrari 812 Superfast with 830 hp and exclusive carbon fiber bodywork</p>
-                    <div class="model-specs">
-                        <div class="spec-item">
-                            <span class="spec-value">830</span>
-                            HP
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-value">2.9s</span>
-                            0-60 MPH
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-value">208</span>
-                            TOP SPEED
-                        </div>
-                    </div>
-                    <button class="learn-more-btn">Learn More</button>
-                </div>
-            </div>
-            
-            <div class="model-card" style="background-image: url('https://www.mansory.com/cdn-cgi/image/format=avif,quality=90/https://cdn.prod.website-files.com/661d6e0d2e84ef511db18f17/681b22e2bc6a3710aa5130e0_bentley-gtc-mansory-grey-hero.webp');" onclick="openModal('bentleygtc2025')">
-                <div class="model-overlay">
-                    <h3 class="model-name">Bentley GTC MY2025</h3>
-                    <p class="model-description">Based on Bentley Continental GT / GTC - Developed body kit made of carbon fibre - Mansory Atelier interiork</p>
-                    <div class="model-specs">
-                        <div class="spec-item">
-                            <span class="spec-value">750</span>
-                            HP
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-value">3.3s</span>
-                            0-60 MPH
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-value">205</span>
-                            TOP SPEED
-                        </div>
-                    </div>
-                    <button class="learn-more-btn">Learn More</button>
-                </div>
-            </div>
-
-            <div class="model-card" style="background-image: url('https://www.mansory.com/cdn-cgi/image/format=avif,quality=90/https://cdn.prod.website-files.com/661d6e0d2e84ef511db18f17/6818c4229400676a9bb2571d_Rolls-Royce%2520Cullinan%2520MY2025-Hero_image-001.webp');" onclick="openModal('rollsroyce')">
-            <div class="model-overlay">
-                    <h3 class="model-name">Rolls-Royce Cullinan MY2025</h3>
-                    <p class="model-description">Complete vehicle conversion based on the Rolls-Royce Cullinan MY 2025 to continue the successful product strategy of MANSORY in the field of high-end automotive refinement.</p>
-                    <div class="model-specs">
-                        <div class="spec-item">
-                            <span class="spec-value">650</span>
-                            HP
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-value">4.5s</span>
-                            0-60 MPH
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-value">174</span>
-                            TOP SPEED
-                        </div>
-                    </div>
-                    <button class="learn-more-btn">Learn More</button>
-                </div>
-            </div>
-            </div>
+                        
         </div>
     </section>
 
@@ -963,7 +1004,7 @@
     <script>
         // Car data
         const carData = {
-                      gronos63: {
+            gronos63: {
                 title: "Mercedes-Benz AMG G63 (W465)",
                 image: "https://www.mansory.com/cdn-cgi/image/format=avif,quality=90/https://cdn.prod.website-files.com/661d6e0d2e84ef511db18f17/6818bf619ce72a9019e6ec04_GRONOS%2520%2520MY%25202025-Hero_image-001.webp",
                 description: "The MANSORY GRONOS is a bold reinterpretation of the Mercedes-AMG G63, combining extreme performance with exclusive design.Aggressive carbon fiber components — including the vented hood, wide fenders, and roof spoiler — enhance both aerodynamics and presence, while preserving the iconic G-Class silhouette.Inside, handcrafted leather, carbon accents, and ambient lighting create a luxurious, custom interior experience.With up to 850 horsepower and over 1,100 Nm of torque, the GRONOS delivers supercar-level performance in a full-size SUV body.",
@@ -1084,18 +1125,18 @@
                 }
             },
             rollsroyce: {
-                    title: "Rolls-Royce Cullinan MY2025",
-                    image: "https://www.mansory.com/cdn-cgi/image/format=avif,quality=90/https://cdn.prod.website-files.com/661d6e0d2e84ef511db18f17/6818c4229400676a9bb2571d_Rolls-Royce%2520Cullinan%2520MY2025-Hero_image-001.webps",
-                    description: "The MANSORY Cullinan MY2025 redefines luxury SUV dominance with a commanding presence, upgraded performance, and unmistakable bespoke character. The iconic silhouette remains intact, but every detail has been sharpened with MANSORY’s signature carbon fiber and tailored craftsmanship.",
-                    specs: {
-                        "Power": "650 HP",
-                        "Engine": "6.75L Twin-Turbo V12",
-                        "0-60 MPH": "4.5 seconds",
-                        "Top Speed": "174 mph",
-                        "Weight": "2,660 kg",
-                        "Body Kit": " Lightweight carbon fiber",
-                        "Interior": "Crocodile Leather",
-                        "Production": "Limited Edition"
+                title: "Rolls-Royce Cullinan MY2025",
+                image: "https://www.mansory.com/cdn-cgi/image/format=avif,quality=90/https://cdn.prod.website-files.com/661d6e0d2e84ef511db18f17/6818c4229400676a9bb2571d_Rolls-Royce%2520Cullinan%2520MY2025-Hero_image-001.webp",
+                description: "The MANSORY Cullinan MY2025 redefines luxury SUV dominance with a commanding presence, upgraded performance, and unmistakable bespoke character. The iconic silhouette remains intact, but every detail has been sharpened with MANSORY's signature carbon fiber and tailored craftsmanship.",
+                specs: {
+                    "Power": "650 HP",
+                    "Engine": "6.75L Twin-Turbo V12",
+                    "0-60 MPH": "4.5 seconds",
+                    "Top Speed": "174 mph",
+                    "Weight": "2,660 kg",
+                    "Body Kit": " Lightweight carbon fiber",
+                    "Interior": "Crocodile Leather",
+                    "Production": "Limited Edition"
                 }
             },
         };
@@ -1130,6 +1171,61 @@
             changeSlide(nextSlide);
         }, 6000);
 
+        // Touch/swipe support for hero section
+        let startX = 0;
+        let endX = 0;
+
+        document.querySelector('.hero').addEventListener('touchstart', e => {
+            startX = e.changedTouches[0].screenX;
+        });
+
+        document.querySelector('.hero').addEventListener('touchend', e => {
+            endX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const threshold = 50;
+            const difference = startX - endX;
+            
+            if (Math.abs(difference) > threshold) {
+                if (difference > 0) {
+                    const nextSlide = (currentSlide + 1) % slides.length;
+                    changeSlide(nextSlide);
+                } else {
+                    const prevSlide = (currentSlide - 1 + slides.length) % slides.length;
+                    changeSlide(prevSlide);
+                }
+            }
+        }
+
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            mobileMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                const mobileMenu = document.getElementById('mobileMenu');
+                const hamburger = document.querySelector('.hamburger');
+                
+                mobileMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
         // Modal functionality
         function openModal(carId) {
             const car = carData[carId];
@@ -1139,7 +1235,6 @@
             document.getElementById('modalDescription').textContent = car.description;
             document.getElementById('modalImage').style.backgroundImage = `url(${car.image})`;
             
-            // Populate specs
             const specsContainer = document.getElementById('modalSpecs');
             specsContainer.innerHTML = '';
             
@@ -1170,6 +1265,29 @@
             }
         }
 
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+                const mobileMenu = document.getElementById('mobileMenu');
+                const hamburger = document.querySelector('.hamburger');
+                if (mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+
+        // CTA button functionality
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                document.getElementById('models').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1182,77 +1300,6 @@
                     });
                 }
             });
-        });
-
-        // CTA button functionality
-        document.querySelectorAll('.cta-button').forEach(button => {
-            button.addEventListener('click', function() {
-                if (this.textContent === 'DISCOVER MORE') {
-                    document.getElementById('models').scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                } else {
-                    alert('Thank you for your interest. We will contact you shortly.');
-                }
-            });
-        });
-
-        // Hamburger menu toggle function
-        function toggleHamburgerMenu(event) {
-            event.stopPropagation();
-            const hamburger = document.querySelector('.hamburger');
-            hamburger.classList.toggle('active');
-            
-            // Close hamburger when clicking outside
-            document.addEventListener('click', function closeHamburger(e) {
-                if (!hamburger.contains(e.target)) {
-                    hamburger.classList.remove('active');
-                    document.removeEventListener('click', closeHamburger);
-                }
-            });
-        }
-
-        // Models submenu toggle in hamburger
-        function toggleModelsSubmenu(event) {
-            event.preventDefault();
-            event.stopPropagation();
-            const toggle = event.target;
-            const submenu = document.querySelector('.models-submenu');
-            
-            toggle.classList.toggle('active');
-            submenu.classList.toggle('active');
-        }
-
-        // Models dropdown toggle function (removed since dropdown is removed)
-        // function toggleModelsDropdown(event) {
-        //     event.preventDefault();
-        //     const dropdown = document.querySelector('.models-dropdown');
-        //     dropdown.classList.toggle('active');
-        //     
-        //     // Close dropdown when clicking outside
-        //     document.addEventListener('click', function closeDropdown(e) {
-        //         if (!dropdown.contains(e.target)) {
-        //             dropdown.classList.remove('active');
-        //             document.removeEventListener('click', closeDropdown);
-        //         }
-        //     });
-        // }
-
-        // Legacy hamburger functionality for mobile nav
-        document.addEventListener('DOMContentLoaded', function() {
-            // Hide nav links on mobile by default
-            if (window.innerWidth <= 768) {
-                document.querySelectorAll('.nav-links').forEach(nav => {
-                    nav.style.display = 'none';
-                });
-            }
-        });
-
-        // Keyboard navigation for modal
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
         });
 
         // Intersection Observer for animations
